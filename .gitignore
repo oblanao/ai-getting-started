@@ -38,6 +38,8 @@ next-env.d.ts
 /fly.toml
 
 # content for embeddings
+/data
+/data-queue
 /blogs
 /blogs-queue
 /jsons
