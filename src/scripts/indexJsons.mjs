@@ -10,17 +10,32 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
+const reviewToDocument = ({ review, ...restData }) => {
+  const { body, ...restReview } = review;
+  return new Document({
+    metadata: {
+      ...restData,
+      ...restReview,
+    },
+    pageContent: body,
+  });
+};
+
 (async () => {
   const fileNames = fs.readdirSync("jsons");
-  const langchainDocs = fileNames.map((fileName) => {
+  const langchainDocs = [];
+  for (let i = 0; i < fileNames.length; i++) {
+    const fileName = fileNames[i];
     const filePath = path.join("jsons", fileName);
     const fileContent = fs.readFileSync(filePath, "utf8");
-
-    return new Document({
-      metadata: { fileName },
-      pageContent: fileContent,
-    });
-  });
+    try {
+      const reviews = JSON.parse(fileContent);
+      const docs = reviews.map(reviewToDocument);
+      langchainDocs.push(...docs);
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 500,
