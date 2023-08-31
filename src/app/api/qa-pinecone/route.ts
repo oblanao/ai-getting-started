@@ -2,10 +2,10 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { OpenAI } from "langchain/llms/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { CallbackManager } from "langchain/callbacks";
+import { ChatOpenAI } from "langchain/chat_models/openai";
 
 dotenv.config({ path: `.env.local` });
 
@@ -24,9 +24,9 @@ export async function POST(request: Request) {
   );
 
   const { stream, handlers } = LangChainStream();
-  const model = new OpenAI({
+  const model = new ChatOpenAI({
     streaming: true,
-    modelName: "gpt-3.5-turbo-16k",
+    modelName: "gpt-3.5-turbo",
     openAIApiKey: process.env.OPENAI_API_KEY,
     callbackManager: CallbackManager.fromHandlers(handlers),
   });

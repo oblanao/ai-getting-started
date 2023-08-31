@@ -44,7 +44,7 @@ export default function QAModal({
                 <div>
                   <form onSubmit={handleSubmit}>
                     <input
-                      placeholder="Will AI Take All Our Jobs?"
+                      placeholder="What's the general opinion on this hotel?"
                       className="w-full flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm focus:outline-none  sm:text-sm sm:leading-6"
                       value={input}
                       onChange={handleInputChange}
@@ -55,10 +55,11 @@ export default function QAModal({
                       <p className="text-sm text-gray-500">
                         Ask questions about{" "}
                         <a
-                          href="https://a16z.com/2023/06/06/ai-will-save-the-world/"
-                          className="underline"
+                          href="https://www.riu.com/en/hotel/mexico/playa-del-carmen/hotel-riu-palace-riviera-maya/"
+                          target="_blank"
+                          className="underline font-bold"
                         >
-                          Why AI Will Save the World
+                          RIU Palace Riviera Maya
                         </a>
                       </p>
                     </div>
