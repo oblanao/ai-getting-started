@@ -40,3 +40,5 @@ next-env.d.ts
 # content for embeddings
 /blogs
 /blogs-queue
+/jsons
+/jsons-queue

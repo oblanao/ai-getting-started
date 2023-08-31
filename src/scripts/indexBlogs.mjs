@@ -10,7 +10,7 @@ import path from "path";
 dotenv.config({ path: `.env.local` });
 
 const fileNames = fs.readdirSync("blogs");
-const lanchainDocs = fileNames.map((fileName) => {
+const langchainDocs = fileNames.map((fileName) => {
   const filePath = path.join("blogs", fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
   return new Document({
@@ -27,7 +27,7 @@ await client.init({
 const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 
 await PineconeStore.fromDocuments(
-  lanchainDocs,
+  langchainDocs,
   new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
   {
     pineconeIndex,
