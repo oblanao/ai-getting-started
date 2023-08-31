@@ -9,9 +9,9 @@ import path from "path";
 
 dotenv.config({ path: `.env.local` });
 
-const fileNames = fs.readdirSync("blogs");
+const fileNames = fs.readdirSync("data");
 const langchainDocs = fileNames.map((fileName) => {
-  const filePath = path.join("blogs", fileName);
+  const filePath = path.join("data", fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
   return new Document({
     metadata: { fileName },
