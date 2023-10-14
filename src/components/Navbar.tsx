@@ -1,11 +1,11 @@
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs";
-import Image from "next/image";
 import Link from "next/link";
+
 const navigation = [
   {
-    name: "About",
-    href: "https://github.com/oblanao/ai-getting-started",
+    name: "Chess Coders",
+    href: "https://chesscoders.com",
     current: false,
   },
 ];
@@ -31,7 +31,7 @@ export default function Navbar() {
                       item.current
                         ? "bg-gray-900 text-white"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
+                      "rounded-md py-2 text-sm font-medium"
                     )}
                     aria-current={item.current ? "page" : undefined}
                   >

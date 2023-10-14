@@ -44,7 +44,7 @@ export default function QAModal({
                 <div>
                   <form onSubmit={handleSubmit}>
                     <input
-                      placeholder="What's the general opinion on this hotel?"
+                      placeholder="What is the maximum length of an uploaded video file?"
                       className="w-full flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm focus:outline-none  sm:text-sm sm:leading-6"
                       value={input}
                       onChange={handleInputChange}
@@ -53,14 +53,15 @@ export default function QAModal({
                   <div className="mt-3 sm:mt-5">
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Ask questions about{" "}
+                        Ask questions about the{" "}
                         <a
-                          href="https://www.riu.com/en/hotel/mexico/playa-del-carmen/hotel-riu-palace-riviera-maya/"
+                          href="https://chesscoders.atlassian.net/wiki/spaces/REV/overview"
                           target="_blank"
-                          className="underline font-bold"
+                          className="text-orange-300 font-semibold font-bold"
                         >
-                          RIU Palace Riviera Maya
-                        </a>
+                          Real Estate Video
+                        </a>{" "}
+                        project
                       </p>
                     </div>
                     {completion && (
