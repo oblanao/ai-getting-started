@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import fs from "fs";
 import path from "path";
 
@@ -19,6 +20,12 @@ const langchainDocs = fileNames.map((fileName) => {
   });
 });
 
+const textSplitter = new RecursiveCharacterTextSplitter({
+  chunkSize: 500,
+  chunkOverlap: 0,
+});
+const splitDocs = await textSplitter.splitDocuments(langchainDocs);
+
 const client = new PineconeClient();
 await client.init({
   apiKey: process.env.PINECONE_API_KEY,
@@ -27,7 +34,7 @@ await client.init({
 const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 
 await PineconeStore.fromDocuments(
-  langchainDocs,
+  splitDocs,
   new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
   {
     pineconeIndex,
